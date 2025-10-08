@@ -6,9 +6,10 @@ data = pd.read_csv('vehicles_us.csv')
 
 st.header('Aplicación web de analisis de datos de vehículos en EE.UU.')
 
+column = st.selectbox("Selecciona la columna para el histograma", data.columns)
+
 hist_button = st.button('Construir histograma')
 if hist_button:
-    st.write(
-        'Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-    fig = px.histogram(data, x="odometer")
+    st.write(f'Creando histograma para la columna: {column}')
+    fig = px.histogram(data, x=column)
     st.plotly_chart(fig, use_container_width=True)
